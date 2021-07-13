@@ -25,6 +25,8 @@ pipeline {
             # Making saving directory
             mkdir -p /mnt
 
+            cat src/main.py
+
             # Uploading screenshot to the ticket
             python3 src/main.py \
               --username "${IDRAC_USERNAME}" \
