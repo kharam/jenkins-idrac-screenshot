@@ -23,6 +23,8 @@ pipeline {
             export SERVICEDESK_BASE_URL=https://help.ihme.washington.edu
             export SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
             export SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
+            
+            echo $(whoami)
 
             # Install requires python package for api
             pip3 install --usaer requests
