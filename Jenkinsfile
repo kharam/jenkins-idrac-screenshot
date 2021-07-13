@@ -2,7 +2,6 @@ pipeline {
   agent {
     docker {
       label 'infrastructure-uge-submit-p01'
-      image 'docker-infrapub.artifactory.ihme.washington.edu/selenium_chrome'
     }
 
   }
@@ -13,6 +12,12 @@ pipeline {
     }
   stages {
     stage('main') {
+      agent {
+        docker {
+          image 'docker-infrapub.artifactory.ihme.washington.edu/selenium_chrome'
+        }
+
+      }
       steps {
         withCredentials([
           usernamePassword(credentialsId: 'ticket-machine.atlassian.user', usernameVariable: 'SERVICEDESK_USERNAME', passwordVariable: 'SERVICEDESK_PASSWORD'),
