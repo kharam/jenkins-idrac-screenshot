@@ -1,6 +1,7 @@
 pipeline {
   agent {
-    docker('infrastructure-uge-submit-p01') {
+    docker {
+      label 'infrastructure-uge-submit-p01'
       image 'docker-infrapub.artifactory.ihme.washington.edu/selenium_chrome'
     }
 
