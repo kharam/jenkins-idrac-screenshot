@@ -18,10 +18,10 @@ pipeline {
 
             # Uploading screenshot to the ticket
             docker run --rm \
-              -v ${pwd}/src:/mnt
+              -v ${pwd}/src:/mnt \
               -e SERVICEDESK_BASE_URL=https://help.ihme.washington.edu \
-              -e SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
-              -e SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
+              -e SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME} \
+              -e SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD} \
               -t python3 /mnt/main.py \
               --username "${IDRAC_USERNAME}" \
               --password "${IDRAC_PASSWORD}" \
