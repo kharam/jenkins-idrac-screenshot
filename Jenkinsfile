@@ -7,9 +7,9 @@ pipeline {
   }
 
   parameters {
-    parameters { string(name: 'NODE_NAME', defaultValue: '', description: '') }
-    parameters { string(name: 'TICKET_ID', defaultValue: '', description: '') }
-  }
+        string(name: 'NODE_NAME', defaultValue: '', description: 'ex) gen-uge-archive-p123')
+        string(name: 'TICKET_ID', defaultValue: '', description: 'INFR-1234')
+    }
   stages {
     stage('main') {
       steps {
