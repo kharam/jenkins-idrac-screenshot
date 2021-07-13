@@ -26,8 +26,11 @@ pipeline {
             # Install requires python package for api
             pip3 install requests
 
+            # Making saving directory
+            mkdir /mnt
+
             # Uploading screenshot to the ticket
-            python3 /mnt/main.py \
+            python3 src/main.py \
                   --username ${IDRAC_USERNAME} \
                   --password ${IDRAC_PASSWORD} \
                   --nodename ${NODE_NAME} \
