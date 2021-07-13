@@ -31,7 +31,7 @@ pipeline {
             echo $(whoami)
 
             # Install requires python package for api
-            pip3 install --usaer requests
+            pip3 install --user requests
 
             # Making saving directory
             mkdir -p /mnt
