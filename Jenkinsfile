@@ -27,7 +27,7 @@ pipeline {
             pip3 install requests
 
             # Making saving directory
-            mkdir /mnt
+            mkdir -p /mnt
 
             # Uploading screenshot to the ticket
             python3 src/main.py \
