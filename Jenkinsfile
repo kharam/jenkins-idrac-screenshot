@@ -1,16 +1,12 @@
 pipeline {
   agent {
-    node {
+    dockerfile {
+      filename 'dockerfile'
       label 'infra'
     }
   }
   stages {
     stage('main') {
-      agent {
-        dockerfile {
-          filename 'dockerfile'
-        }
-      }
       steps {
         withCredentials(bindings: [
                     usernamePassword(credentialsId: 'ticket-machine.atlassian.user', usernameVariable: 'SERVICEDESK_USERNAME', passwordVariable: 'SERVICEDESK_PASSWORD'),
