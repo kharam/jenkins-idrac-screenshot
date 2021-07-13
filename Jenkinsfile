@@ -25,7 +25,7 @@ pipeline {
             export SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
 
             # Install requires python package for api
-            pip3 install requests
+            pip3 install requests --usaer
 
             # Making saving directory
             mkdir -p /mnt
