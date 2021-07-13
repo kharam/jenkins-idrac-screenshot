@@ -1,14 +1,10 @@
 pipeline {
   agent {
-    node {
-      label 'infrastructure-uge-submit-p01'
+    dockerfile {
+      filename 'dockerfile'
     }
-  }
 
-  parameters {
-        string(name: 'NODE_NAME', defaultValue: '', description: 'ex) gen-uge-archive-p123')
-        string(name: 'TICKET_ID', defaultValue: '', description: 'INFR-1234')
-    }
+  }
   stages {
     stage('main') {
       agent {
@@ -18,11 +14,11 @@ pipeline {
 
       }
       steps {
-        withCredentials([
-          usernamePassword(credentialsId: 'ticket-machine.atlassian.user', usernameVariable: 'SERVICEDESK_USERNAME', passwordVariable: 'SERVICEDESK_PASSWORD'),
-          usernamePassword(credentialsId: 'idrac.user.root', usernameVariable: 'IDRAC_USERNAME', passwordVariable: 'IDRAC_PASSWORD'),
-        ]) {
-          sh '''
+        withCredentials(bindings: [
+                    usernamePassword(credentialsId: 'ticket-machine.atlassian.user', usernameVariable: 'SERVICEDESK_USERNAME', passwordVariable: 'SERVICEDESK_PASSWORD'),
+                    usernamePassword(credentialsId: 'idrac.user.root', usernameVariable: 'IDRAC_USERNAME', passwordVariable: 'IDRAC_PASSWORD'),
+                  ]) {
+            sh '''
             # Setting Environemnt Variables
             export SERVICEDESK_BASE_URL=https://help.ihme.washington.edu
             export SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
@@ -37,15 +33,16 @@ pipeline {
             mkdir -p /mnt
 
             # Uploading screenshot to the ticket
-            python3 src/main.py \
-                  --username "${IDRAC_USERNAME}" \
-                  --password "${IDRAC_PASSWORD}" \
-                  --nodename "${NODE_NAME}" \
-                  --ticket "${TICKET_ID}"
+            python3 src/main.py                   --username "${IDRAC_USERNAME}"                   --password "${IDRAC_PASSWORD}"                   --nodename "${NODE_NAME}"                   --ticket "${TICKET_ID}"
           '''
+          }
+
         }
       }
-    }
 
+    }
+    parameters {
+      string(name: 'NODE_NAME', defaultValue: '', description: 'ex) gen-uge-archive-p123')
+      string(name: 'TICKET_ID', defaultValue: '', description: 'INFR-1234')
+    }
   }
-}
