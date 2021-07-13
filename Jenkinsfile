@@ -15,7 +15,7 @@ pipeline {
             sh '''
 
             # buiild docker file
-            docker build -t jenkins-idrac
+            docker build -t jenkins-idrac .
 
             # Uploading screenshot to the ticket
             docker run --rm \
