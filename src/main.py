@@ -21,11 +21,13 @@ def getParameter() -> Tuple[str, str, str, str]:
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # Taking screenshot
+    print("Taking screenshot")
     username, password, url, ticket = getParameter()
     sel:sc.Selenium = sc.connect(url, username, password)
     sc.screenshot(sel) # save screenshot to /mnt/screenshot/png
 
     # Uploading screenshot to the host
+    print("uploading screenshot")
     f = open('/mnt/screenshot.png', 'rb')
     attachment_list = []
     attachment_list.append(f)
