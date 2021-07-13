@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'infrastructure-uge-submit-p01'
+      label 'master'
     }
   }
   stages {
