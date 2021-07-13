@@ -21,8 +21,8 @@ pipeline {
             docker run --rm \
               -v ${PWD}/src:/mnt \
               -e SERVICEDESK_BASE_URL=https://help.ihme.washington.edu \
-              -e SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME} \
-              -e SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD} \
+              -e ATLASSIAN_USERNAME=${SERVICEDESK_USERNAME} \
+              -e ATLASSIAN_PASSWORD=${SERVICEDESK_PASSWORD} \
               -t jenkins-idrac python3 /mnt/main.py \
               --username "${IDRAC_USERNAME}" \
               --password "${IDRAC_PASSWORD}" \
