@@ -18,6 +18,8 @@ pipeline {
           usernamePassword(credentialsId: 'idrac.user.root', usernameVariable: 'IDRAC_USERNAME', passwordVariable: 'IDRAC_PASSWORD'),
         ]) {
           sh '''
+            #!/bin/bash
+
             # Setting Environemnt Variables
             export SERVICEDESK_BASE_URL=https://help.ihme.washington.edu
             export SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
