@@ -1,7 +1,6 @@
 pipeline {
   agent {
-    dockerfile {
-      filename 'dockerfile'
+    node {
       label 'infra'
     }
   }
@@ -13,18 +12,17 @@ pipeline {
                     usernamePassword(credentialsId: 'idrac.user.root', usernameVariable: 'IDRAC_USERNAME', passwordVariable: 'IDRAC_PASSWORD'),
                   ]) {
             sh '''
-            # Setting Environemnt Variables
-            export SERVICEDESK_BASE_URL=https://help.ihme.washington.edu
-            export SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
-            export SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
+            checkout scm
 
-            # Making saving directory
-            mkdir -p /mnt
-
-            cat src/main.py
+            # docker build -t jenkins-idrac
 
             # Uploading screenshot to the ticket
-            python3 src/main.py \
+            docker run --rm \
+              -v ${pwd}/src:/mnt
+              -e SERVICEDESK_BASE_URL=https://help.ihme.washington.edu \
+              -e SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
+              -e SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
+              -t python3 /mnt/main.py \
               --username "${IDRAC_USERNAME}" \
               --password "${IDRAC_PASSWORD}" \
               --nodename "${NODE_NAME}" \
