@@ -31,10 +31,10 @@ pipeline {
 
             # Uploading screenshot to the ticket
             python3 src/main.py \
-                  --username ${IDRAC_USERNAME} \
-                  --password ${IDRAC_PASSWORD} \
-                  --nodename ${NODE_NAME} \
-                  --ticket ${TICKET_ID}
+                  --username "${IDRAC_USERNAME}" \
+                  --password "${IDRAC_PASSWORD}" \
+                  --nodename "${NODE_NAME}" \
+                  --ticket "${TICKET_ID}"
           '''
         }
       }
