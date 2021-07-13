@@ -1,9 +1,8 @@
 pipeline {
   agent {
-    docker {
+    node {
       label 'infrastructure-uge-submit-p01'
     }
-
   }
 
   parameters {
