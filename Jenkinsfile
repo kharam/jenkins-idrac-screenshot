@@ -14,7 +14,8 @@ pipeline {
             checkout scm
             sh '''
 
-            # docker build -t jenkins-idrac
+            # buiild docker file
+            docker build -t jenkins-idrac
 
             # Uploading screenshot to the ticket
             docker run --rm \
