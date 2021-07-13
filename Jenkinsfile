@@ -11,8 +11,8 @@ pipeline {
                     usernamePassword(credentialsId: 'ticket-machine.atlassian.user', usernameVariable: 'SERVICEDESK_USERNAME', passwordVariable: 'SERVICEDESK_PASSWORD'),
                     usernamePassword(credentialsId: 'idrac.user.root', usernameVariable: 'IDRAC_USERNAME', passwordVariable: 'IDRAC_PASSWORD'),
                   ]) {
-            sh '''
             checkout scm
+            sh '''
 
             # docker build -t jenkins-idrac
 
