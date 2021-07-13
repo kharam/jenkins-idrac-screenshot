@@ -19,7 +19,7 @@ pipeline {
 
             # Uploading screenshot to the ticket
             docker run --rm \
-              -v ${pwd}/src:/mnt \
+              -v ${PWD}/src:/mnt \
               -e SERVICEDESK_BASE_URL=https://help.ihme.washington.edu \
               -e SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME} \
               -e SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD} \
