@@ -1,17 +1,15 @@
 pipeline {
   agent {
-    dockerfile {
-      filename 'dockerfile'
+    node {
+      label 'infrastructure-uge-submit-p01'
     }
-
   }
   stages {
     stage('main') {
       agent {
-        docker {
-          image 'docker-infrapub.artifactory.ihme.washington.edu/selenium_chrome'
+        dockerfile {
+          filename 'dockerfile'
         }
-
       }
       steps {
         withCredentials(bindings: [
@@ -23,17 +21,16 @@ pipeline {
             export SERVICEDESK_BASE_URL=https://help.ihme.washington.edu
             export SERVICEDESK_USERNAME=${SERVICEDESK_USERNAME}
             export SERVICEDESK_PASSWORD=${SERVICEDESK_PASSWORD}
-            
-            echo $(whoami)
-
-            # Install requires python package for api
-            pip3 install --user requests
 
             # Making saving directory
             mkdir -p /mnt
 
             # Uploading screenshot to the ticket
-            python3 src/main.py                   --username "${IDRAC_USERNAME}"                   --password "${IDRAC_PASSWORD}"                   --nodename "${NODE_NAME}"                   --ticket "${TICKET_ID}"
+            python3 src/main.py \
+              --username "${IDRAC_USERNAME}" \
+              --password "${IDRAC_PASSWORD}" \
+              --nodename "${NODE_NAME}" \
+              --ticket "${TICKET_ID}"
           '''
           }
 
