@@ -4,6 +4,9 @@ pipeline {
       label 'infra'
     }
   }
+
+  options { disableConcurrentBuilds() }
+  
   stages {
     stage('main') {
       steps {
