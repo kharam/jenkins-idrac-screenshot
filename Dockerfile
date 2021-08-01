@@ -1,4 +1,4 @@
-FROM selenium/standalone-chrome:3.141.59
+FROM selenium/standalone-chrome:91.0
 
 RUN pip3 install requests
 
