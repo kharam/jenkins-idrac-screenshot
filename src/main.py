@@ -1,5 +1,5 @@
 import screenshot as sc
-import upload as up
+import servicedesk as up
 import argparse as ag
 
 from typing import Tuple
@@ -14,7 +14,7 @@ def getParameter() -> Tuple[str, str, str, str]:
     username = args.username
     password = args.password
     ticket = args.ticket
-    url = f'https://m-{args.nodename}.ipmi.ihme.washington.edu'
+    url = f'{args.nodename}'
 
     return username, password, url, ticket
 
