@@ -13,7 +13,7 @@ Engineer, and Devops to troubleshoot Dell Cluster better
 
 ## How to use
 
-1. Modify Jenkisn file to your environment.
+1. Modify Jenkisn file for your environment.
 
 ## Issue?
 
